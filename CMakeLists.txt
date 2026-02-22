@@ -15,7 +15,19 @@ find_package(geometry_msgs REQUIRED)
 # 1. Add executable using src/tf_broadcaster.cpp
 # 2. Add dependencies (ament_target_dependencies) for rclcpp, tf2_ros, geometry_msgs
 # 3. Install the target to the DESTINATION lib/${PROJECT_NAME}
+add_executable(tf_broadcaster src/tf_broadcaster.cpp)
 
+ament_target_dependencies(tf_broadcaster
+  rclcpp
+  geometry_msgs
+  tf2
+  tf2_ros
+)
+
+install(TARGETS
+  tf_broadcaster
+  DESTINATION lib/${PROJECT_NAME}
+)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
